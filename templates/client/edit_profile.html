@@ -1,0 +1,108 @@
+{% extends 'client/common/layout.html'%}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-caption">
+                        <h2 class="page-title">Edit Account</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="content">
+        <div class="container" >
+            <div class="row">
+                 
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" >
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h1 align="center">Edit Account</h1>
+                         
+                        <form method="post"  action="/client/update_profile/{{result.id}}">
+                          {% csrf_token %} 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label" >First Name</label>
+                                    <input type="text" name="fname" id="fname" placeholder="first Name" value="{{result.user.first_name}}" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="control-label" >Last Name</label>
+                                    <input type="text" name="lname" id="lname" placeholder="last Name" value="{{result.user.last_name}}" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="control-label" >User Name</label>
+                                    <input type="text" name="username" id="username" placeholder="user Name" value="{{result.user.username}}" class="form-control">
+                                </div>
+                                 
+
+                                <div class="col-md-12">
+                                    <label class="control-label" >Email</label>
+                                    <input type="email" id="email" name="email" value="{{result.user.email}}" placeholder="Email" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="control-label" >Contact</label>
+                                    <input type="text" id="contact" name="contact" placeholder="Contact" value="{{result.contact}}" class="form-control">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label" >Address</label>
+                                            <textarea class="form-control" id="address" name="address"  rows="6" placeholder="Address">{{result.address}}</textarea>
+                                        </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <label class="radio-inline">
+                                               <input type="radio" name="gender" class="form-field" id="rd1" value="male" {% if result.gender == 'male' %} checked {% endif %}>Male
+                                            </label>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="gender" class="form-field" id="rd2" value="female"  {% if result.gender == 'female' %} checked {% endif %}>Female
+                                            </label>
+                                        </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Area</label>
+                                            <select class="chosen-select" tabindex="1" style="width:100%;" data-placeholder="Default Sorting" id="area" name="area">
+                                            <option value="Select">Select Area</option>
+                                             {% for a in areas %}
+                                            <option value="{{a.id}}" {% if result.area_id == a.id %} selected {% endif %}>{{a.area_name}}</option>
+                                            {% endfor %}
+                                            </select>
+                                        </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                             <label>City<span>*</span></label>
+                                            <select class="chosen-select" tabindex="1" style="width:100%;" data-placeholder="Default Sorting" id="city" name="city">
+                                            <option value="Select">Select City</option>
+                                             {% for c in cities %}
+                                            <option value="{{c.id}}" {% if result.city_id == c.id %} selected {% endif %}>{{c.city_name}}</option>
+                                            {% endfor %}
+                                            </select>
+                                        </div>
+                                </div>
+                                 
+                                 
+                                  
+                                <div class="col-md-12">
+                                     <button class="btn btn-default" type="submit" id="submit" name="submit">Update</button>
+                                </div>
+                                 
+                                 
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

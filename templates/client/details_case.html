@@ -1,0 +1,107 @@
+{% extends 'client/common/layout.html'%}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-caption">
+                        <h2 class="page-title">Details</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-8 col-sm-8 col-md-8 col-sm-8">
+                            <div class="post-holder">
+                                <!-- post holder -->
+                                <div class="post-img">
+                                    <!-- post img -->
+                                   <!--  <img src="/media/copy/{{result.fir_copy}}" height="300" width="700" ></a> -->
+                                     
+                                </div>
+                                <!-- /.post img -->
+                                <div class="post-content">
+                                    <!-- post content -->
+                                    <div class="post-header">
+                                        <!-- post header -->
+                                        <h1 class="post-title"><a href="blog-single.html" class="title">{{result.title}}</a></h1>
+                                        <div class="meta">
+                                            <!-- post meta -->
+                                            <span class="meta-date">{{result.fir_date}} </span><br/>
+                                            <span class="meta-date">{{result.area.area_name}},&nbsp;&nbsp;{{result.city.city_name}} </span>
+                                        </div>
+                                        <!-- /.post meta -->
+                                    </div>
+                                    <!-- /.post header -->
+                                    <p>{{result.description}} </p>
+                                     
+                                </div>
+                                <!-- /.post content -->
+                            </div>
+                            <!-- /.post holder -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="widget widget-categories"><!-- widget categories -->
+                                             <!-- widget start -->
+                        <h2 class="widget-title">Other Details </h2>
+                            <ul class="listnone">
+                                <li><a href="#">City : {{result.city.city_name}}</a></li>
+                                <li><a href="#"> Area : {{result.area.area_name}}</a></li>
+                                <li><a href="#">Client Name : {{result.client.user.first_name}}</a></li>
+                                <li><a href="#">Staff Name : {{result.staff.user.first_name}}</a></li>
+                                <li><a href="#">Fir Station : {{result.fir_station}}</a></li>
+                                <li><a href="#">Crimetype : {{result.crimetype}}</a></li>
+                             </ul>
+                     </div>
+                </div>
+                    <div  class="col-lg-10 col-md-8 col-sm-8 col-xs-12"> 
+                        <h2 class="widget-title">Documents</h2>
+                            <ul class="listnone widget-recent-post">
+                                <table border="1px">
+                                    <tr>
+                                        <th style="padding: 20px">Case Title </th>
+                                        <th style="padding: 20px">Crimetype </th>
+                                        <th style="padding: 20px">Case Status </th>
+                                        <th style="padding: 20px">Case Handle By(Staff)</th>
+                                        <th style="padding: 20px">Evidence Type</th>
+                                        <th style="padding: 20px">Evidence image </th>
+                                        <th style="padding: 20px">Evidence Description </th>
+
+                                    </tr>
+                                    {% for row in docs %}
+                                    <tr>
+                                        <td style="padding: 20px">{{row.case.title}}</td>
+                                        <td style="padding: 20px">{{row.case.crimetype}}</td>
+                                        <td style="padding: 20px">{{row.case.status}}</td>
+                                        <td style="padding: 20px">{{row.case.staff.user.first_name}}</td>
+                                        <td style="padding: 20px">{{row.title}}</td>
+                                       
+                                        <td style="padding: 20px">{{row.description}}</td>
+                                         <td style="padding: 20px"><a href="/media/docs/{{row.evidence}}" download>Download</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                                            
+                            </ul>
+                    </div>
+                                          
+                                          
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

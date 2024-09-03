@@ -1,0 +1,52 @@
+{% extends 'client/common/layout.html'%}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-caption">
+                        <h2 class="page-title">Login</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+  <div class="content">
+        <div class="container" >
+            <div class="row">
+                 
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" >
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h1 align="center">Login</h1>
+                         
+                        <form method="post"  action="/client/login_check/">
+                          {% csrf_token %} 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label" for="name">Username</label>
+                                    <input type="text" id="username" name="username" placeholder="" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="control-label" for="phone">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                     <button class="btn btn-default" type="submit" id="submit" name="submit">Login</button>
+                                </div>
+                                 
+                                 
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

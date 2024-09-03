@@ -1,0 +1,50 @@
+{% load static %}
+<div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <a href="#"><img src="{% static 'client/images/logo_webcourt.png'%}" height="70px" width="180px" alt=""></a>
+                </div>
+                <div class="col-lg-8 col-md-4 col-sm-12 col-xs-12">
+                     <div class="navigation">
+                        <div id="navigation">
+                            <ul>
+                                <li class=""><a href="/client/dashboard/" title="Home">Home</a></li>
+                               
+                                <li class=""><a href="/client/services/" title="Services">Services</a></li>
+                                
+                                
+                                {% if request.user.is_authenticated %}
+                                <li><a href="/client/mycase/" title="My Case">My Case</a></li>
+                                <li class="has-sub"><a href="" title="Post">Appointment</a>
+                                    <ul>
+                                        <li><a href="/client/appointment/" title="Make New Appointment">Make An Appointment</a></li>
+                                        <li><a href="/client/my_appointment/" title="My Appointment">My Appointment</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/client/feedback/" title="FeedBack">FeedBack</a></li>
+                                <li class="has-sub"><a href="" title="Post">Profile</a>
+                                    <ul>
+                                        <li><a href="/client/edit_profile/" title="Edit Profile">Edit Profile</a></li>
+                                        <li><a href="/client/change_password/" title="Change Password">Change Password</a></li>
+                                        <li><a href="/client/logout/" title="Logout">Logout</a></li>
+                                    </ul>
+                                </li>
+                                 
+                                {% else %}
+                                <li class=""><a href="/client/about_us/" title="About Us">About Us</a></li>
+                                <li ><a href="/client/add_contact/" title="Contact Us">Contact Us</a>
+                                </li>
+                                <li><a href="/client/login/" title="Login">Login</a> </li>
+
+
+                                {% endif %}
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>

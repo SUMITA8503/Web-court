@@ -1,0 +1,162 @@
+{% extends 'myadmin/inc/layout.html' %}
+{% block content %}
+<div class="main-content">
+				<div class="main-content-inner">
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="#">Home</a>
+							</li>
+
+							<li>
+								<a href="#">Staff</a>
+							</li>
+							<li class="active">Add New Member</li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+					</div>
+
+					<div class="page-content">
+						
+
+						<div class="page-header">
+							<h1>
+								Staff
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									Add New Member
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<form class="form-horizontal" role="form" method="post" action="/myadmin/update_staff/{{result.id}}" enctype="multipart/form-data">
+									{% csrf_token %}
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">First Name </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="First Name" id="fname" name="fname" value="{{result.user.first_name}}" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1" >Last Name </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="Last Name" id="lname" name="lname" value="{{result.user.last_name}}" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1" >User Name </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="Last Name" id="username" name="username" value="{{result.user.username}}" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									 
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Email</label>
+
+										<div class="col-sm-9">
+											<input type="email" id="form-field-1" placeholder="Email" id="email" name="email" value="{{result.user.email}}" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1">Contact </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="Contact" id="contact" name="contact" value="{{result.contact}}" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Address </label>
+
+										<div class="col-sm-9">
+											<textarea   placeholder="Address" class="col-xs-10 col-sm-5" id="address" name="address" >{{result.address}}</textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> City </label>
+
+										<div class="col-sm-9">
+											<select name="city" id="city"  class="col-xs-10 col-sm-5">
+												<option value="">--Select City--</option>
+												  {% for c in cities %}
+													<option value="{{c.id}}" {% if c.id == result.city_id %} selected {% endif %}>{{c.city_name}}</option>
+												{% endfor %}
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Area </label>
+
+										<div class="col-sm-9">
+											<select  name="area" id="area" class="col-xs-10 col-sm-5">
+												<option value="">--Select Area--</option>
+												  {% for a in areas %}
+													<option value="{{a.id}}" {% if a.id == result.area_id %} selected {% endif %}>{{a.area_name}}</option>
+												{% endfor %}
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Image</label>
+
+										<div class="col-sm-9">
+											<input type="file"  id="image" name="image" value="{{result.image}}"  class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									 
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> gender </label>
+
+										<div class="col-sm-9">
+											<div class="radio" style="position: relative;right: 10px">
+													<label>
+														<input   type="radio"  name="gender" id="male" value="male"{% if result.gender == 'male' %} checked {% endif %} class="ace" />
+														<span class="lbl"> Male</span>
+													</label>
+											
+													<label>
+														<input name="gender"  type="radio"    id="female"  value="female"{% if result.gender == 'female' %} checked {% endif %}class="ace" />
+														<span class="lbl">Female</span>
+													</label>
+													 
+											</div>
+											
+										</div>
+
+									</div>
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info"  type="submit">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												Update
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											 
+										</div>
+									</div>
+
+								</form>
+								
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends 'myadmin/inc/layout.html' %}
+{% block content %}
+<div class="main-content">
+				<div class="main-content-inner">
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="#">Home</a>
+							</li>
+
+							<li>
+								<a href="#">Case</a>
+							</li>
+							<li class="active">Add New Case</li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+					</div>
+
+					<div class="page-content">
+						
+
+						<div class="page-header">
+							<h1>
+								Case
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									Add New Case
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<form class="form-horizontal" role="form" method="post" action="/myadmin/store_case/" enctype="multipart/form-data">
+									{% csrf_token %}
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Title </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="Title" id="title" name="title" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Description </label>
+
+										<div class="col-sm-9">
+											<textarea   placeholder="description" class="col-xs-10 col-sm-5" id="description" name="description" ></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">FIR DATE </label>
+
+										<div class="col-sm-9">
+											<input type="date" id="form-field-1"  id="fir_date" name="fir_date" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Fir Station </label>
+
+										<div class="col-sm-9">
+											<select name="fir_station" id="fir_station"  class="col-xs-10 col-sm-5">
+												<option value="">--Select Station--</option>
+												<option value="surat">Surat</option>
+												<option value="ahmedabad">Ahmedbad</option>
+												
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1">Crime Type </label>
+
+										<div class="col-sm-9">
+											<select name="type" id="type"  class="col-xs-10 col-sm-5">
+												<option value="">--Select Type--</option>
+												<option value="murder">Murder</option>
+												<option value="stealing">Stealing</option>
+												<option value="property">Property Dispute</option>
+												<option value="etc">ETC</option>
+												
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Client </label>
+
+										<div class="col-sm-9">
+											<select name="client" id="client"  class="col-xs-10 col-sm-5">
+												<option value="">--Select Client--</option>
+												{% for c in clients %}
+                                                <option value="{{c.id}}">{{c.user.first_name}}</option>
+                                                {% endfor %}
+											</select> 
+										</div>
+									</div>
+									 
+									 
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Staff </label>
+
+										<div class="col-sm-9">
+											<select name="staff" id="staff"  class="col-xs-10 col-sm-5">
+												<option value="">--Select Staff--</option>
+												{% for row in staffs %}
+                                                <option value="{{row.id}}">{{row.user.first_name}}</option>
+                                                {% endfor %}
+											</select> 
+										</div>
+									</div>
+									 
+									 
+									
+									 
+
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> City </label>
+
+										<div class="col-sm-9">
+											<select name="city" id="city"  class="col-xs-10 col-sm-5">
+												<option value="">--Select City--</option>
+												{% for row in cities %}
+                                                <option value="{{row.id}}">{{row.city_name}}</option>
+                                                {% endfor %}
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Area </label>
+
+										<div class="col-sm-9">
+											<select  name="area" id="area" class="col-xs-10 col-sm-5">
+												<option value="">--Select Area--</option>
+												{% for row in areas %}
+                                                <option value="{{row.id}}">{{row.area_name}}</option>
+                                                {% endfor %}
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">copy</label>
+
+										<div class="col-sm-9">
+											<input type="file"  id="fir_copy" name="fir_copy"  class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									 
+									 
+
+									
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info"  type="submit">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												Submit
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="ace-icon fa fa-undo bigger-110"></i>
+												Reset
+											</button>
+										</div>
+									</div>
+
+								</form>
+
+								
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+</div><!-- /.main-content -->
+{% endblock %}

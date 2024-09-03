@@ -1,0 +1,70 @@
+{% extends 'client/common/layout.html'%}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="page-caption">
+                        <h2 class="page-title">My Appoinment</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-8 col-sm-8 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-sm-12">
+                            <div  class="col-lg-12 col-md-8 col-sm-8 col-xs-12"> 
+                                <h2 class="widget-title">My Appointment</h2>
+                                    <ul class="listnone widget-recent-post">
+                                        <table border="1px">
+                                            <tr>
+                                                <th style="padding: 20px">Id </th>
+                                                <th style="padding: 20px">Subject </th>
+                                                <th style="padding: 20px">Remarks </th>
+                                                <th style="padding: 20px">Client Name </th>
+                                                <th style="padding: 20px">Status</th>
+                                                <th style="padding: 20px">Remarks</th>
+                                                <th style="padding: 20px">Date </th>
+                                                <th style="padding: 20px">Time</th>
+                                                
+                                                 
+                                         
+                                            </tr>
+                                           {% for row in result %}
+                                            <tr>
+                                                <td style="padding: 20px">{{row.id}}</td>
+                                                <td style="padding: 20px">{{row.subject}}</td>
+                                                <td style="padding: 20px">{{row.description}}</td>
+                                                <td style="padding: 20px">{{row.user.first_name}}</td>
+                                                <td style="padding: 20px">{{row.status}}</td>
+                                                <td style="padding: 20px">{{row.remarks}}</td>
+                                                <td style="padding: 20px">{{row.date}}</td>
+                                                <td style="padding: 20px">{{row.time}}</td>
+                                                
+                                           {% endfor %}
+                            
+                                         </table>
+                                            
+                                     </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+ 
+
+
+  
+
+{% endblock %}

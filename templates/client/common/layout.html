@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Flower is free physiotherapy website template that perfectly designed for therapy center, physical therapy program courses, physiotherapy clinic and physician.">
+    <meta name="keywords" content="best free website templates, html5 template, free responsive website templates,website layout,html5 website templates,template for website design, medical HTML5 templates">
+    <title>Client </title>
+    <!-- Bootstrap -->
+    <link href="{% static 'client/css/bootstrap.min.css'%}" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'client/css/font-awesome.min.css'%}" rel="stylesheet">
+    <!-- Style -->
+    <link href="{% static 'client/css/style.css'%}" rel="stylesheet">
+     
+</head>
+ 
+
+<body>
+    <div class="header-top">
+        <!-- header-top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <span class="text-block time-block">  
+                                <span class="time-text">Mon to Sat: <strong>10am - 9pm</strong> - Sunday: <strong>Closed</strong></span>
+                    </span>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8  col-xs-12">
+                    <div class="top-text">
+                        <span class="text-block call-block"> 
+                               <span class="call-no">+00 (123) 456 7890</span>
+                        </span>
+                        <span class="text-block mail-block hidden-xs hidden-sm">  
+                                <span class="mail-text">info@yourdomain.com</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+    
+    {% include 'client/common/header.html'%}
+
+
+    {% block content%}
+
+
+
+    {% endblock %}
+    
+    {% include 'client/common/footer.html'%}
+     <div class="tiny-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="copyright-content">
+                  <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">WEB COURT</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static 'client/js/jquery.min.js'%}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'client/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'client/js/menumaker.js'%}"></script>
+ 
+
+    <script src="{% static 'client/js/jquery.sticky.js'%}"></script>
+    <script src="{% static 'client/js/sticky-header.js'%}"></script>
+</body>
+
+</html>

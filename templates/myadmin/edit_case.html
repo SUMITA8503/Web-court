@@ -1,0 +1,182 @@
+{% extends 'myadmin/inc/layout.html' %}
+{% block content %}
+<div class="main-content">
+				<div class="main-content-inner">
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="#">Home</a>
+							</li>
+
+							<li>
+								<a href="#">Case</a>
+							</li>
+							<li class="active">Edit Case</li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+					</div>
+
+					<div class="page-content">
+						
+
+						<div class="page-header">
+							<h1>
+								Case
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									Edit Case
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<form class="form-horizontal" role="form" method="post" action="/myadmin/update_case/{{result.id}}" enctype="multipart/form-data">
+									{% csrf_token %}
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Title </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="Title" id="title" name="title" value="{{result.title}}" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Description </label>
+
+										<div class="col-sm-9">
+											<textarea   placeholder="description" class="col-xs-10 col-sm-5" id="description" name="description">{{result.description}}</textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">FIR DATE </label>
+
+										<div class="col-sm-9">
+											<input type="date" id="form-field-1"  id="fir_date" name="fir_date" class="col-xs-10 col-sm-5" value="{{result.fir_date}}" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Fir Station </label>
+
+										<div class="col-sm-9">
+											<select name="fir_station" id="fir_station"  class="col-xs-10 col-sm-5">
+												<option value="">--Select Station--</option>
+												<option value="1" {% if result.fir_station == '1' %} selected {% endif %}>Surat</option>
+												<option value="2" {% if result.fir_station == '2' %} selected {% endif %}>Ahmedbad</option>
+												
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1">Crime Type </label>
+
+										<div class="col-sm-9">
+											<select name="type" id="type"  class="col-xs-10 col-sm-5">
+												<option value="">--Select Type--</option>
+												<option value="1" {% if result.type == '1' %} selected {% endif %}>Murder</option>
+												<option value="2" {% if result.type == '2' %} selected {% endif %}>Stealing</option>
+												<option value="3" {% if result.type == '3' %} selected {% endif %}>Property Dispute</option>
+												<option value="4" {% if result.type == '4' %} selected {% endif %}>ETC</option>
+												
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Client </label>
+
+										<div class="col-sm-9">
+											<select name="client" id="client"  class="col-xs-10 col-sm-5">
+												<option value="">--Select Client--</option>
+												 {% for c in clients %}
+													<option value="{{c.id}}" {% if c.id == result.client_id %} selected {% endif %}>{{c.fname}}</option>
+												{% endfor %}
+											</select> 
+										</div>
+									</div>
+									 
+									 
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> Staff </label>
+
+										<div class="col-sm-9">
+											<select name="staff" id="staff"  class="col-xs-10 col-sm-5">
+												<option value="">--Select Staff--</option>
+												 {% for s in staffs %}
+													<option value="{{s.id}}" {% if s.id == result.staff_id %} selected {% endif %}>{{s.fname}}</option>
+												{% endfor %}
+											</select> 
+										</div>
+									</div>
+									 
+									 
+									
+									 
+
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-1"> City </label>
+
+										<div class="col-sm-9">
+											<select name="city" id="city"  class="col-xs-10 col-sm-5">
+												<option value="">--Select City--</option>
+												 {% for c in cities %}
+													<option value="{{c.id}}" {% if c.id == result.city_id %} selected {% endif %}>{{c.city_name}}</option>
+												{% endfor %}
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Area </label>
+
+										<div class="col-sm-9">
+											<select  name="area" id="area" class="col-xs-10 col-sm-5">
+												<option value="">--Select Area--</option>
+												 {% for a in areas %}
+													<option value="{{a.id}}" {% if a.id == result.area_id %} selected {% endif %}>{{a.area_name}}</option>
+												{% endfor %}
+											</select> 
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">copy</label>
+
+										<div class="col-sm-9">
+											<input type="file"  id="fir_copy" name="fir_copy"  class="col-xs-10 col-sm-5" value="{{result.fir_copy}}" />
+										</div>
+									</div>
+									 
+									 
+
+									</div>
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info"  type="submit">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												Update
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="ace-icon fa fa-undo bigger-110"></i>
+												Reset
+											</button>
+										</div>
+									</div>
+
+								</form>
+								
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+{% endblock %}
